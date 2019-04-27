@@ -1,0 +1,68 @@
+<% include ../partials/header%>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4"> 
+            <div class="card">
+                <img class="emp-img card-img-top" src="<%= employee.image %>" alt="Card image cap">
+                <div class="card-body">
+                <hr>
+                <h3 class="card-title"><%= employee.name %></h3>
+                <p class="card-text"><%= employee.description %></p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="card skill-form">
+                <div>
+                    <h4 class="text-center"> Add a new skill for <%= employee.name %></h4>
+                    <form action="/employees/<%=employee._id%>/skills" method="POST" >
+                        <div class="form-group">
+                            <input class="form-control" type="number" name='skill[communication]' placeholder='communication'>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="number" name='skill[productKnowledge]' placeholder='communication'>
+                        </div>
+                        <div class="form-group">
+                            <button class='btn btn-block btn-lg btn-primary'> Submit </button>
+                        </div>
+                    </form> 
+                    <a href='/employees'>Go Back</a>
+                </div>
+            </div>
+            <div class="card">
+            <div class="card-body bg-light">
+                <% employee.skills.forEach((skill) =>{ %>
+                        <h4>Skills</h4>
+                        <div class='col-md-12'>
+                            <p>Communication:
+                                <%= skill.communication %>
+                            </p>
+                            <p> Product Knowledge:
+                                <%= skill.productKnowledge %>
+                            </p>
+                        </div>
+                    <% }); %>
+                    <div class="card-body bg-light">
+                        <% employee.tasks.forEach((task) =>{ %>
+                            <h4>Tasks</h4>
+                            <div class='col-md-12'>
+                                <p>Name:
+                                    <%= task.name %>
+                                </p>
+                                <p> Description:
+                                    <%= task.description %>
+                                </p>
+                            </div>
+                            <% }); %>
+                    <div class="text-right">
+                        <a class="btn btn-success" href="/employees/<%= employee._id %>/skills/new">Add new SKill</a>
+                    </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <% include ../partials/footer %>

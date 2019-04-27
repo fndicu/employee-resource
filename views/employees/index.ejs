@@ -1,0 +1,36 @@
+<% include ../partials/header %>
+<div class="">
+    <div class="row">
+        <div class="col-md-2 side-panel">
+        </div>
+        <div class="col-md-10">
+            <nav class="navbar tool-bar">
+                <form class="form-inline" action="/action_page.php">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-success" type="submit">Search</button>
+                </form>
+            </nav>
+            <div class="row main-content">     
+                <div class="col-md-8">
+                    <div class="card-columns ">
+                        <% employees.forEach(function(employee){ %>
+                            <div class="card">
+                                <div class="emp-card-body">
+                                    <div class="emp-card-top">
+                                        <img class="rounded-circle emp-img" src="<%=employee.image %>" alt="employee image">
+                                    </div>
+                                    <h5 class="emp-card-title"><%= employee.name %></h5>
+                                    <p class="card-text">
+                                        <%= employee.title %>
+                                    </p>
+                                    <a href="/employees/<%=employee._id %>">See Profile</a>
+                                </div>
+                            </div>
+                            <%  }); %>
+                    </div>
+                </div>         
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
